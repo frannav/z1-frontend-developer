@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useState } from "react";
+import { Props } from "./types";
 import {
   Container,
   ImageContainer,
@@ -16,11 +17,6 @@ import CheckIcon from "../../public/Images/check.svg";
 
 const FETCH_URL = "https://front-exercise.z1.digital/evaluations";
 
-export type Props = {
-  changeStatus: any;
-  status: AppState;
-};
-
 export default function Scanner({ changeStatus, status }: Props) {
   const [fetchResult, setFetchResult] = useState("initial");
 
@@ -32,7 +28,7 @@ export default function Scanner({ changeStatus, status }: Props) {
     fetch(FETCH_URL, {
       method: "POST",
       body: JSON.stringify({
-        image: "test",
+        image: ImageId,
       }),
     })
       .then((response) => response.json())

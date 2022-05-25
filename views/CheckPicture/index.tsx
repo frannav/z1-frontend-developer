@@ -4,11 +4,7 @@ import IdCard from "../../public/Images/id-card.png";
 import { Container, ImageContainer, Button } from "./styles";
 import Alert from "../../components/Alert";
 import { AppState } from "../../types/appState";
-
-export type Props = {
-  changeStatus: any;
-  status: AppState;
-};
+import { Props } from "./types";
 
 export default function CheckPicture({ changeStatus, status }: Props) {
   const cancelCheck = () => {
