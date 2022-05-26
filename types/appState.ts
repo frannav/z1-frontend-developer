@@ -5,6 +5,4 @@ export enum AppState {
   PictureAdded = "PictureAdded",
   Loading = "Loading",
   FetchingData = "FetchingData",
-  Success = "Success",
-  Error = "Error",
 }
