@@ -29,7 +29,7 @@ npm run dev
 
 **Run e2e test**
 
-To run cypress you must have the app rsunning
+To run cypress you must have the app running
 
 ```
 npm run dev
