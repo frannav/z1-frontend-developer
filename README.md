@@ -5,6 +5,7 @@
 - Typescript
 - Styled-Components
 - Cypress (e2e testing purposes)
+- Eslint & Prettier
 
 # Folders structure
 
