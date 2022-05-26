@@ -21,6 +21,7 @@ describe("Navigation", () => {
 
     cy.get("div").contains("Accepted");
   });
+
   it("should show an Rejected status", () => {
     cy.visit("http://localhost:3000/");
 
