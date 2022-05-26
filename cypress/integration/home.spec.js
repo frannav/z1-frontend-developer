@@ -11,6 +11,23 @@ describe("Navigation", () => {
 
     cy.get("button").click();
 
+    cy.get("div").contains("Room lighting is too low" || "Picture Taken!");
+  });
+
+  it("should show an Accepted status", () => {
+    cy.visit("http://localhost:3000/");
+
     cy.get("button").click();
+
+    cy.get("div").contains("Accepted");
+  });
+  it("should show an Rejected status", () => {
+    cy.visit("http://localhost:3000/");
+
+    cy.get("button").click();
+
+    cy.get("div").contains("Rejected");
+
+    cy.get("button").get("span").contains("RETAKE PICTURE");
   });
 });
