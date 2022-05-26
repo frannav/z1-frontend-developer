@@ -36,9 +36,7 @@ const Home: NextPage = () => {
 
       <main>
         {(status === AppState.InitialState ||
-          status === AppState.FetchingData ||
-          status === AppState.Success ||
-          status === AppState.Error) && (
+          status === AppState.FetchingData) && (
           <>
             <Nav />
             <Scanner
