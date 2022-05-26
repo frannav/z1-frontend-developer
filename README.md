@@ -32,7 +32,7 @@ npm run dev
 To run cypress you must have the app rsunning
 
 ```
-npm run devs
+npm run dev
 ```
 
 And then execute cypress script
