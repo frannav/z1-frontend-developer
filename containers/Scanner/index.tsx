@@ -10,40 +10,29 @@ import {
   RetakeButton,
 } from "./styles";
 import { AppState } from "../../types/appState";
-import ImageId from "../../public/Images/id-bg-white.svg";
-import IdCard from "../../public/Images/id-card.png";
 import CrossIcon from "../../public/Images/cross.svg";
 import CheckIcon from "../../public/Images/check.svg";
+import { postRequest } from "../../lib/api";
+import { ResponsePostRequest } from "../../lib/api.types";
 
-const FETCH_URL = "https://front-exercise.z1.digital/evaluations";
-
-export default function Scanner({ changeStatus, status }: Props) {
-  const [fetchResult, setFetchResult] = useState("initial");
+export default function Scanner({ changeStatus, status, image }: Props) {
+  const [fetchResult, setFetchResult] = useState<
+    "initial" | "accepted" | "rejected"
+  >("initial");
 
   const addPicture = () => {
     changeStatus(AppState.Loading);
   };
 
-  const postRequest = async () => {
-    fetch(FETCH_URL, {
-      method: "POST",
-      body: JSON.stringify({
-        image: ImageId,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.summary.outcome === "Too Much Glare") {
-          setFetchResult("rejected");
-        }
-        if (data.summary.outcome === "Approved") {
-          setFetchResult("accepted");
-        }
-      });
-  };
-
   if (status === AppState.FetchingData && fetchResult === "initial") {
-    postRequest();
+    postRequest(image).then((data: ResponsePostRequest) => {
+      if (data.summary.outcome === "Too Much Glare") {
+        setFetchResult("rejected");
+      }
+      if (data.summary.outcome === "Approved") {
+        setFetchResult("accepted");
+      }
+    });
   }
 
   return (
@@ -56,7 +45,7 @@ export default function Scanner({ changeStatus, status }: Props) {
       {status === AppState.InitialState && (
         <ImageContainer>
           <Image
-            src={ImageId}
+            src={image}
             alt="ID background image"
             width={260}
             height={160}
@@ -69,7 +58,7 @@ export default function Scanner({ changeStatus, status }: Props) {
       {status === AppState.FetchingData && (
         <ImageContainer>
           <Image
-            src={IdCard}
+            src={image}
             alt="ID background image"
             width={260}
             height={160}
